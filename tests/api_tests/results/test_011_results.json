@@ -1,0 +1,113 @@
+{
+  "test_case": "011",
+  "user_query": "Which reports have I submitted in the last quarter?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval with date range filters",
+      "endpoint": "/api/v3.0/expense/reports?user={username}&submitDateAfter={quarterStart}&submitDateBefore={quarterEnd}",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 1,
+        "date_range": "2024-10-01 to 2024-12-31"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Date range with limit parameter",
+      "endpoint": "/api/v3.0/expense/reports?user={username}&submitDateAfter={quarterStart}&submitDateBefore={quarterEnd}&limit=5",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 1,
+        "limit_requested": 5
+      },
+      "error": null
+    },
+    {
+      "test_name": "Validate reports are within specified date range",
+      "passed": true,
+      "validations": [
+        {
+          "report_name": "RonwTest4Submitted",
+          "report_id": "296131D8D00E424CA138",
+          "submit_date": "2024-11-05T00:28:38.283",
+          "in_range": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "params",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "params.user == user11@p10005178e93.com",
+          "present": true
+        },
+        {
+          "field": "report.id",
+          "present": true
+        },
+        {
+          "field": "report.name",
+          "present": true
+        },
+        {
+          "field": "report.submission_date",
+          "present": true
+        },
+        {
+          "field": "report.approval_status",
+          "present": true
+        },
+        {
+          "field": "report.total",
+          "present": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Compare current quarter vs last quarter",
+      "passed": true,
+      "comparison": {
+        "last_quarter_count": 1,
+        "current_quarter_count": 0,
+        "last_quarter_range": "2024-10-01 to 2024-12-31",
+        "current_quarter_range": "2025-10-01 to 2025-11-06"
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:14.318508",
+    "quarter_tested": "2024-10-01 to 2024-12-31"
+  }
+}

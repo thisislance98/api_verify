@@ -1,0 +1,161 @@
+{
+  "test_case": "038",
+  "user_query": "Can I see the workflow history of my expense report?",
+  "api_endpoint": "GET /expensereports/v4/reports/{reportId}",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Get single report by ID",
+      "endpoint": "/expensereports/v4/reports/A1FCFC7C71D84705A3F7",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "report_id": "A1FCFC7C71D84705A3F7",
+        "report_name": "Test",
+        "approval_status": "Submitted & Pending Approval",
+        "has_workflow_data": true
+      },
+      "error": null
+    },
+    {
+      "test_name": "Verify workflow fields in response",
+      "passed": true,
+      "workflow_fields": [
+        {
+          "field": "workflowStep",
+          "present": true,
+          "has_value": false
+        },
+        {
+          "field": "approvalStatus",
+          "present": true,
+          "has_value": true
+        },
+        {
+          "field": "approvalStatusName",
+          "present": true,
+          "has_value": false
+        },
+        {
+          "field": "submitDate",
+          "present": true,
+          "has_value": true
+        },
+        {
+          "field": "approverName",
+          "present": true,
+          "has_value": false
+        },
+        {
+          "field": "approvalDate",
+          "present": true,
+          "has_value": false
+        },
+        {
+          "field": "lastModifiedDate",
+          "present": true,
+          "has_value": false
+        },
+        {
+          "field": "workflow",
+          "present": true,
+          "has_value": false
+        },
+        {
+          "field": "workflowHistory",
+          "present": true,
+          "has_value": false
+        },
+        {
+          "field": "transitions",
+          "present": true,
+          "has_value": false
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Check for workflow transitions/history",
+      "passed": true,
+      "transitions": [
+        {
+          "type": "workflow object",
+          "data": null
+        },
+        {
+          "type": "workflowHistory array",
+          "data": null
+        },
+        {
+          "type": "transitions array",
+          "data": null
+        },
+        {
+          "type": "basic workflow tracking",
+          "data": {
+            "currentStep": null,
+            "status": "Submitted & Pending Approval",
+            "submitDate": "2023-02-14T17:04:07Z",
+            "lastModified": null
+          }
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Compare single report vs list endpoint data",
+      "passed": true,
+      "comparison": {
+        "single_endpoint_fields": 83,
+        "list_endpoint_fields": 30,
+        "difference": 53
+      },
+      "error": null
+    },
+    {
+      "test_name": "Workflow info across multiple reports",
+      "passed": true,
+      "reports_analyzed": [
+        {
+          "report_id": "A1FCFC7C71D84705A3F7",
+          "name": "Test",
+          "status": "Submitted & Pending Approval",
+          "workflow_step": "N/A"
+        },
+        {
+          "report_id": "75628C5954A84795A189",
+          "name": "test",
+          "status": "Submitted & Pending Approval",
+          "workflow_step": "N/A"
+        },
+        {
+          "report_id": "CA8B6E28D9C048AF841D",
+          "name": "parking",
+          "status": "Submitted & Pending Approval",
+          "workflow_step": "N/A"
+        },
+        {
+          "report_id": "82D466AB9D144ED99D1D",
+          "name": "meng-test",
+          "status": "Submitted & Pending Approval",
+          "workflow_step": "N/A"
+        },
+        {
+          "report_id": "296131D8D00E424CA138",
+          "name": "RonwTest4Submitted",
+          "status": "Approved & In Accounting Review",
+          "workflow_step": "N/A"
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:51:22.770423",
+    "test_report_id": "A1FCFC7C71D84705A3F7"
+  }
+}

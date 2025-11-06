@@ -1,0 +1,116 @@
+{
+  "test_case": "013",
+  "user_query": "What reports are waiting for finance review?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of reports waiting for finance review",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&paymentStatusCode=P_PROC",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 1,
+        "approval_status_code": "A_APPR",
+        "payment_status_code": "P_PROC"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Retrieval with custom limit",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&paymentStatusCode=P_PROC&limit=10",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 1,
+        "limit_applied": 10
+      },
+      "error": null
+    },
+    {
+      "test_name": "Filter validation (A_APPR and P_PROC)",
+      "passed": true,
+      "validations": [
+        {
+          "check": "Approval status = A_APPR",
+          "passed": true
+        },
+        {
+          "check": "Payment status = P_PROC",
+          "passed": true
+        },
+        {
+          "check": "Report approval status = A_APPR",
+          "passed": true
+        },
+        {
+          "check": "Report payment status = P_PROC",
+          "passed": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "approval_status_code",
+          "present": true
+        },
+        {
+          "field": "payment_status_code",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "report.id",
+          "present": true
+        },
+        {
+          "field": "report.name",
+          "present": true
+        },
+        {
+          "field": "report.total",
+          "present": true
+        },
+        {
+          "field": "report.currency_code",
+          "present": true
+        },
+        {
+          "field": "report.approval_status",
+          "present": true
+        },
+        {
+          "field": "report.payment_status_name",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:19.724078"
+  }
+}

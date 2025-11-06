@@ -1,0 +1,161 @@
+{
+  "test_case": "030",
+  "user_query": "Can I see reports with specific report names?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Retrieve all reports and analyze names",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 45,
+        "unique_names": 37,
+        "report_names": [
+          "Test",
+          "test",
+          "parking",
+          "meng-test",
+          "RonwTest4Submitted",
+          "November Expenses (11/01/2024)",
+          "Min_Test",
+          "Min_Test_2",
+          "Collections SLT (Do Not Delete)",
+          "March Expenses (03/01/2025)",
+          "Empty Report",
+          "XPR-6312000",
+          "Test FIS JSON A mexico cfdi",
+          "June Expenses (06/01/2025)",
+          "min_test",
+          "SDK Test 09-02 11:45",
+          "SDK Test 09-02 11:48",
+          "Demo Expense Report 2025-09-02",
+          "Test Report - Expense Types",
+          "INCTS Default Test"
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Exact name match search",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "search_name": "test",
+        "match_type": "exact",
+        "total_reports": 45,
+        "matching_count": 3,
+        "matches": [
+          {
+            "id": "0F6FE7ED24C64B5A8250",
+            "name": "test",
+            "owner": "user 123",
+            "total": 232.0
+          },
+          {
+            "id": "75628C5954A84795A189",
+            "name": "test",
+            "owner": "James p10005178e93",
+            "total": 27.0
+          },
+          {
+            "id": "A1959CB38B0641EBB0C5",
+            "name": "test",
+            "owner": "Receipt Japan",
+            "total": 0.0
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Partial name match search",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "search_terms": [
+          "test",
+          "expense",
+          "trip",
+          "travel",
+          "parking",
+          "meeting"
+        ],
+        "results": {
+          "test": {
+            "count": 34,
+            "sample_names": [
+              "Test",
+              "test",
+              "test"
+            ]
+          },
+          "expense": {
+            "count": 5,
+            "sample_names": [
+              "November Expenses (11/01/2024)",
+              "March Expenses (03/01/2025)",
+              "June Expenses (06/01/2025)"
+            ]
+          },
+          "trip": {
+            "count": 3,
+            "sample_names": [
+              "Business Trip - 2025-09-04",
+              "Business Trip to New York",
+              "Business Trip to New York"
+            ]
+          },
+          "parking": {
+            "count": 1,
+            "sample_names": [
+              "parking"
+            ]
+          }
+        },
+        "total_reports": 45
+      },
+      "error": null
+    },
+    {
+      "test_name": "Case-insensitive name search",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "original_name": "Test",
+        "case_insensitive": true,
+        "note": "Client-side filtering supports case-insensitive search",
+        "total_reports": 45
+      },
+      "error": null
+    },
+    {
+      "test_name": "Practical name search helper function",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "helper_function": "search_reports_by_name",
+        "features": [
+          "Partial or exact name matching",
+          "Case-sensitive or case-insensitive search",
+          "Easy to integrate into applications"
+        ],
+        "partial_match_example_count": 34,
+        "total_reports": 45
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:45:23.829232"
+  }
+}

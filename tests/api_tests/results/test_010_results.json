@@ -1,0 +1,115 @@
+{
+  "test_case": "010",
+  "user_query": "Can I see reports that were approved but not yet extracted?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval without filters",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "params": {
+        "approvalStatusCode": "A_APPR",
+        "hasException": "N"
+      },
+      "passed": false,
+      "response": {
+        "count": 0,
+        "params": {
+          "approvalStatusCode": "A_APPR",
+          "hasException": "N",
+          "limit": 50
+        }
+      },
+      "error": "NO_TEST_DATA",
+      "test_data_available": false
+    },
+    {
+      "test_name": "Approval status verification",
+      "passed": true,
+      "validations": [],
+      "error": null,
+      "response": {
+        "all_reports_valid": true,
+        "total_reports_checked": 0
+      }
+    },
+    {
+      "test_name": "Extraction status verification",
+      "passed": true,
+      "validations": [],
+      "error": null,
+      "response": {
+        "all_reports_not_extracted": true,
+        "total_reports_checked": 0
+      }
+    },
+    {
+      "test_name": "Exception status verification",
+      "passed": true,
+      "response": {
+        "hasException_filter": "N",
+        "total_reports": 0
+      },
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "params",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "reports (array)",
+          "present": true
+        },
+        {
+          "field": "count (integer)",
+          "present": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Custom limit parameter",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "params": {
+        "approvalStatusCode": "A_APPR",
+        "hasException": "N",
+        "limit": 10
+      },
+      "passed": true,
+      "response": {
+        "count": 0,
+        "requested_limit": 10
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "passed": 5,
+    "failed": 1,
+    "success_rate": "83.3%",
+    "timestamp": "2025-11-06T13:37:51.164334"
+  }
+}

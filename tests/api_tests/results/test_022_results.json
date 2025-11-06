@@ -1,0 +1,119 @@
+{
+  "test_case": "022",
+  "user_query": "Can I see reports from employees in the Chicago office?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of all reports",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 10,
+        "params": {
+          "user": "ALL",
+          "limit": 10
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Examine location-related fields",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 45,
+        "unique_countries": [
+          "MX",
+          "FR",
+          "US",
+          "JP"
+        ],
+        "custom_field_names": [],
+        "location_custom_fields_found": false
+      },
+      "error": null
+    },
+    {
+      "test_name": "Filter reports by location",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "filter_type": "Country",
+        "filter_value": "US",
+        "total_reports": 45,
+        "filtered_count": 32,
+        "sample_report": {
+          "id": "A1FCFC7C71D84705A3F7",
+          "name": "Test",
+          "owner": "James p10005178e93"
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Location filtering with custom fields (documentation)",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "approaches": [
+          {
+            "method": "Country Field",
+            "availability": "Standard field, always available",
+            "implementation": "Filter by report.Country field"
+          },
+          {
+            "method": "Custom Location Field",
+            "availability": "Requires custom field configuration",
+            "implementation": "Filter by report.CustomFields.{LocationFieldName}"
+          },
+          {
+            "method": "Employee Profile Data",
+            "availability": "Requires User API access",
+            "implementation": "Join reports with employee records via User API"
+          },
+          {
+            "method": "Client-Side with External Data",
+            "availability": "Always possible",
+            "implementation": "Load all reports and filter using external location mapping"
+          }
+        ],
+        "recommended_approach": "Custom Location Field (if configured) or Country Field for geographic filtering"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Practical location filtering example",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 45,
+        "locations_found": [
+          "US",
+          "JP",
+          "MX",
+          "FR"
+        ],
+        "location_breakdown": {
+          "US": 32,
+          "JP": 7,
+          "MX": 4,
+          "FR": 2
+        }
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:42.339607"
+  }
+}

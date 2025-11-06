@@ -1,0 +1,110 @@
+{
+  "test_case": "019",
+  "user_query": "Which reports are eligible for early payment?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of reports eligible for early payment (5+ days)",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&paymentStatusCode=P_NOTP&approvedDateBefore={5daysAgo}",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "approval_status_code": "A_APPR",
+        "payment_status_code": "P_NOTP",
+        "threshold_date": "2025-11-01",
+        "days_threshold": 5
+      },
+      "error": null
+    },
+    {
+      "test_name": "Retrieval with custom day threshold (10 days)",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&paymentStatusCode=P_NOTP&approvedDateBefore={10daysAgo}",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "days_threshold": 10,
+        "threshold_date": "2025-10-27"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Retrieval with custom limit",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&paymentStatusCode=P_NOTP&approvedDateBefore={5daysAgo}&limit=10",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "limit_applied": 10
+      },
+      "error": null
+    },
+    {
+      "test_name": "Filter validation (A_APPR, P_NOTP, date threshold)",
+      "passed": true,
+      "validations": [
+        {
+          "check": "Approval status = A_APPR",
+          "passed": true
+        },
+        {
+          "check": "Payment status = P_NOTP",
+          "passed": true
+        },
+        {
+          "check": "Threshold date is set",
+          "passed": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "approval_status_code",
+          "present": true
+        },
+        {
+          "field": "payment_status_code",
+          "present": true
+        },
+        {
+          "field": "threshold_date",
+          "present": true
+        },
+        {
+          "field": "days_threshold",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:36.101762"
+  }
+}

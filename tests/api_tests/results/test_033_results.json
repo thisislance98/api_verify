@@ -1,0 +1,52 @@
+{
+  "test_case": "033",
+  "user_query": "What's the payment method for my approved reports?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Get approved reports with payment methods",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&user=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 0,
+        "message": "No approved reports found - test data needed"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Get approved reports with ACH payment method",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&user=me (filtered for PaymentType=ACH)",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_approved_reports": 0,
+        "ach_reports_count": 0,
+        "ach_reports": [],
+        "note": "PaymentType filter applied client-side (not supported as API parameter)"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Get approved reports without payment method",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&user=me (filtered for empty PaymentType)",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_approved_reports": 0,
+        "reports_without_payment_method": 0,
+        "reports": [],
+        "note": "Empty PaymentType filter applied client-side"
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:47:53.141018"
+  }
+}

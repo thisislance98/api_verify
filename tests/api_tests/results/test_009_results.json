@@ -1,0 +1,110 @@
+{
+  "test_case": "009",
+  "user_query": "What's the total amount in my pending reimbursements?",
+  "api_endpoint": "GET /expensereports/v4/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic pending reimbursements total",
+      "endpoint": "/expensereports/v4/users/a9abaa60-38a0-46be-9736-bc9c1e317e41/context/TRAVELER/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_pending": 2494.0,
+        "currency_code": "USD",
+        "report_count": 4,
+        "currency_codes": [
+          "USD"
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Verify sum calculation",
+      "passed": true,
+      "response": {
+        "api_total": 2494.0,
+        "manual_total": 2494.0,
+        "difference": 0.0,
+        "match": true
+      },
+      "error": null
+    },
+    {
+      "test_name": "Status filter verification",
+      "passed": true,
+      "validations": [],
+      "error": null,
+      "response": {
+        "all_reports_valid": true,
+        "total_reports_checked": 4
+      }
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "total_pending",
+          "present": true
+        },
+        {
+          "field": "currency_code",
+          "present": true
+        },
+        {
+          "field": "currency_codes",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "total_pending (numeric)",
+          "present": true
+        },
+        {
+          "field": "reports (array)",
+          "present": true
+        },
+        {
+          "field": "report.id",
+          "present": true
+        },
+        {
+          "field": "report.name",
+          "present": true
+        },
+        {
+          "field": "report.approval_status",
+          "present": true
+        },
+        {
+          "field": "report.amount_due_employee",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:37:47.849460"
+  }
+}

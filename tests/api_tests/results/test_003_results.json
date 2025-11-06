@@ -1,0 +1,102 @@
+{
+  "test_case": "003",
+  "user_query": "Which expense reports are overdue for approval?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic overdue reports retrieval (7 days)",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND&submitDateBefore={7daysAgo}",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 4,
+        "days_threshold": 7,
+        "threshold_date": "2025-10-30",
+        "approval_status": "A_PEND"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Custom threshold retrieval (14 days)",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND&submitDateBefore={14daysAgo}",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 4,
+        "days_threshold": 14,
+        "threshold_date": "2025-10-23"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Different approval status code",
+      "endpoint": "/api/v3.0/expense/reports with different status codes",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "status_code": "A_PEND",
+        "count": 4
+      },
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "days_threshold",
+          "present": true
+        },
+        {
+          "field": "approval_status",
+          "present": true
+        },
+        {
+          "field": "threshold_date",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "report.id",
+          "present": true
+        },
+        {
+          "field": "report.name",
+          "present": true
+        },
+        {
+          "field": "report.submission_date",
+          "present": true
+        },
+        {
+          "field": "report.days_since_submission",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:37:43.336876"
+  }
+}

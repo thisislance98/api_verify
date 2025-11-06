@@ -1,0 +1,137 @@
+{
+  "test_case": "028",
+  "user_query": "Show me all recalled expense reports",
+  "api_endpoint": "GET /api/v3.0/expense/reports with approvalStatusCode=A_RESU",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Retrieve recalled reports with A_RESU status",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "filters": {
+        "approvalStatusCode": "A_RESU"
+      },
+      "passed": true,
+      "response": {
+        "report_count": 1,
+        "reports": [
+          {
+            "id": "E74EF46964FC441DB857",
+            "name": "XPR-6312000",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 100.0,
+            "currency_code": "MXN",
+            "submission_date": "2025-05-14T20:19:14.917",
+            "approval_status": "Sent Back to Employee",
+            "workflow_step": null,
+            "owner_name": "Mexico User",
+            "created_date": "2025-05-14T20:10:25.03",
+            "last_modified_date": "2025-05-14T22:27:29.863",
+            "country": "MX",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "ReportName": "XPR-6312000",
+            "ID": "E74EF46964FC441DB857",
+            "OwnerName": "Mexico User",
+            "Total": 100.0,
+            "CurrencyCode": "MXN",
+            "SubmitDate": "2025-05-14T20:19:14.917",
+            "ApprovalStatusName": "Sent Back to Employee",
+            "ApprovalStatusCode": "A_RESU",
+            "PaymentStatusName": "Not Paid",
+            "PaymentStatusCode": "P_NOTP",
+            "HasException": false,
+            "PolicyID": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "PolicyName": null,
+            "ApprovedDate": null,
+            "approved_date": null
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Recalled reports with date filter (last 90 days)",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "filters": {
+        "approvalStatusCode": "A_RESU",
+        "modifiedDateAfter": "90 days ago"
+      },
+      "passed": true,
+      "response": {
+        "report_count": 0,
+        "date_filter": "2025-08-08",
+        "reports": []
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analyze recalled reports by employee",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "filters": {
+        "approvalStatusCode": "A_RESU"
+      },
+      "passed": true,
+      "response": {
+        "total_reports": 1,
+        "unique_employees": 1,
+        "employee_summary": {
+          "Mexico User": {
+            "count": 1,
+            "total_amount": 100.0,
+            "reports": [
+              {
+                "id": "E74EF46964FC441DB857",
+                "name": "XPR-6312000",
+                "amount": 100.0,
+                "created": "2025-05-14T20:10:25.03",
+                "modified": "2025-05-14T22:27:29.863"
+              }
+            ]
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Compare recalled reports with other statuses",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "status_counts": {
+          "A_RESU": {
+            "name": "Recalled",
+            "count": 1
+          },
+          "A_PEND": {
+            "name": "Pending Approval",
+            "count": 4
+          },
+          "A_APPR": {
+            "name": "Approved",
+            "count": 1
+          },
+          "A_NOTF": {
+            "name": "Not Submitted",
+            "count": 37
+          }
+        },
+        "recalled_count": 1,
+        "total_submitted": 6,
+        "recall_rate_pct": 16.67
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:54.609503"
+  }
+}

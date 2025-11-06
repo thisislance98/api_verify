@@ -1,0 +1,212 @@
+{
+  "test_case": "034",
+  "user_query": "Can I see reports where I'm listed as a delegate?",
+  "api_endpoint": "GET /api/v3.0/expense/reports?delegateLoginID=me",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of reports where I'm a delegate",
+      "endpoint": "/api/v3.0/expense/reports?delegateLoginID=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 18,
+        "reports": [
+          {
+            "id": "A1FCFC7C71D84705A3F7",
+            "name": "Test",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 2323.0,
+            "currency_code": "USD",
+            "submission_date": "2023-02-14T17:04:07.133",
+            "approval_status": "Submitted & Pending Approval",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2023-02-14T16:38:40.083",
+            "last_modified_date": "2025-10-21T20:30:05.51",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_PEND",
+            "payment_status_name": "Not Paid",
+            "payment_status_code": "P_NOTP",
+            "days_since_submission": 995,
+            "days_since_creation": 995,
+            "owner_login_id": "user11@p10005178e93.com",
+            "delegate_login_id": "",
+            "delegate_name": ""
+          },
+          {
+            "id": "75628C5954A84795A189",
+            "name": "test",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 27.0,
+            "currency_code": "USD",
+            "submission_date": "2024-04-05T17:39:38.117",
+            "approval_status": "Submitted & Pending Approval",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2024-04-05T17:37:39.577",
+            "last_modified_date": "2025-10-21T20:36:40.547",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_PEND",
+            "payment_status_name": "Not Paid",
+            "payment_status_code": "P_NOTP",
+            "days_since_submission": 579,
+            "days_since_creation": 579,
+            "owner_login_id": "user11@p10005178e93.com",
+            "delegate_login_id": "",
+            "delegate_name": ""
+          },
+          {
+            "id": "CA8B6E28D9C048AF841D",
+            "name": "parking",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 37.0,
+            "currency_code": "USD",
+            "submission_date": "2024-04-08T21:19:39.057",
+            "approval_status": "Submitted & Pending Approval",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2024-04-08T21:18:23.233",
+            "last_modified_date": "2025-10-21T20:30:27.497",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_PEND",
+            "payment_status_name": "Not Paid",
+            "payment_status_code": "P_NOTP",
+            "days_since_submission": 576,
+            "days_since_creation": 576,
+            "owner_login_id": "user11@p10005178e93.com",
+            "delegate_login_id": "",
+            "delegate_name": ""
+          },
+          {
+            "id": "82D466AB9D144ED99D1D",
+            "name": "meng-test",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 107.0,
+            "currency_code": "USD",
+            "submission_date": "2024-05-30T22:33:04.807",
+            "approval_status": "Submitted & Pending Approval",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2024-05-30T22:31:46.797",
+            "last_modified_date": "2024-05-30T22:33:05.13",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_PEND",
+            "payment_status_name": "Not Paid",
+            "payment_status_code": "P_NOTP",
+            "days_since_submission": 524,
+            "days_since_creation": 524,
+            "owner_login_id": "user11@p10005178e93.com",
+            "delegate_login_id": "",
+            "delegate_name": ""
+          },
+          {
+            "id": "296131D8D00E424CA138",
+            "name": "RonwTest4Submitted",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 27.0,
+            "currency_code": "USD",
+            "submission_date": "2024-11-05T00:28:38.283",
+            "approval_status": "Approved & In Accounting Review",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2024-11-05T00:27:30.57",
+            "last_modified_date": "2025-11-06T20:10:27.943",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_ACCO",
+            "payment_status_name": "Not Paid",
+            "payment_status_code": "P_NOTP",
+            "days_since_submission": 366,
+            "days_since_creation": 366,
+            "owner_login_id": "user11@p10005178e93.com",
+            "delegate_login_id": "",
+            "delegate_name": ""
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Group reports by owner",
+      "endpoint": "/api/v3.0/expense/reports?delegateLoginID=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 18,
+        "unique_owners": 1,
+        "owner_summary": {
+          "user11@p10005178e93.com": {
+            "name": "James p10005178e93",
+            "count": 18,
+            "total_amount": 6162.26
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Group reports by approval status",
+      "endpoint": "/api/v3.0/expense/reports?delegateLoginID=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 18,
+        "unique_statuses": 3,
+        "status_summary": {
+          "A_PEND": {
+            "name": "Submitted & Pending Approval",
+            "count": 4,
+            "total_amount": 2494.0
+          },
+          "A_ACCO": {
+            "name": "Approved & In Accounting Review",
+            "count": 2,
+            "total_amount": 177.0
+          },
+          "A_NOTF": {
+            "name": "Not Submitted",
+            "count": 12,
+            "total_amount": 3491.26
+          }
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Identify reports requiring delegate action",
+      "endpoint": "/api/v3.0/expense/reports?delegateLoginID=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 18,
+        "draft_reports": 12,
+        "pending_approval": 4,
+        "sent_back": 0,
+        "actionable_count": 12
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:46:14.931689"
+  }
+}

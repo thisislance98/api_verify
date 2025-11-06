@@ -1,0 +1,163 @@
+{
+  "test_case": "035",
+  "user_query": "Which reports need receipts attached before approval?",
+  "api_endpoint": "GET /api/v3.0/expense/reports?hasImages=false&approvalStatusCode=A_PEND&requiresReceipts=Y",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of reports needing receipts",
+      "endpoint": "/api/v3.0/expense/reports?hasImages=false&approvalStatusCode=A_PEND",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 4,
+        "approval_status_code": "A_PEND",
+        "reports": [
+          {
+            "id": "A1FCFC7C71D84705A3F7",
+            "name": "Test",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 2323.0,
+            "currency_code": "USD",
+            "submission_date": "2023-02-14T17:04:07.133",
+            "approval_status": "Submitted & Pending Approval",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2023-02-14T16:38:40.083",
+            "last_modified_date": "2025-10-21T20:30:05.51",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_PEND",
+            "days_since_submission": 995,
+            "has_images": null,
+            "receipt_status": null,
+            "owner_login_id": "user11@p10005178e93.com"
+          },
+          {
+            "id": "75628C5954A84795A189",
+            "name": "test",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 27.0,
+            "currency_code": "USD",
+            "submission_date": "2024-04-05T17:39:38.117",
+            "approval_status": "Submitted & Pending Approval",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2024-04-05T17:37:39.577",
+            "last_modified_date": "2025-10-21T20:36:40.547",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_PEND",
+            "days_since_submission": 579,
+            "has_images": null,
+            "receipt_status": null,
+            "owner_login_id": "user11@p10005178e93.com"
+          },
+          {
+            "id": "CA8B6E28D9C048AF841D",
+            "name": "parking",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 37.0,
+            "currency_code": "USD",
+            "submission_date": "2024-04-08T21:19:39.057",
+            "approval_status": "Submitted & Pending Approval",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2024-04-08T21:18:23.233",
+            "last_modified_date": "2025-10-21T20:30:27.497",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_PEND",
+            "days_since_submission": 576,
+            "has_images": null,
+            "receipt_status": null,
+            "owner_login_id": "user11@p10005178e93.com"
+          },
+          {
+            "id": "82D466AB9D144ED99D1D",
+            "name": "meng-test",
+            "purpose": null,
+            "business_purpose": null,
+            "total": 107.0,
+            "currency_code": "USD",
+            "submission_date": "2024-05-30T22:33:04.807",
+            "approval_status": "Submitted & Pending Approval",
+            "workflow_step": null,
+            "owner_name": "James p10005178e93",
+            "created_date": "2024-05-30T22:31:46.797",
+            "last_modified_date": "2024-05-30T22:33:05.13",
+            "country": "US",
+            "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "report_version": null,
+            "approval_status_code": "A_PEND",
+            "days_since_submission": 524,
+            "has_images": null,
+            "receipt_status": null,
+            "owner_login_id": "user11@p10005178e93.com"
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Verify receipt status and image requirements",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 4,
+        "all_pending_status": true,
+        "reports_without_images": 0,
+        "status_verification": "PASS"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analyze time reports have been pending without receipts",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 4,
+        "average_days_pending": 668.5,
+        "max_days_pending": 995,
+        "min_days_pending": 524,
+        "overdue_count": 4,
+        "overdue_threshold_days": 7
+      },
+      "error": null
+    },
+    {
+      "test_name": "Group reports by owner",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 4,
+        "unique_owners": 1,
+        "top_owners": [
+          {
+            "owner": "James p10005178e93 (user11@p10005178e93.com)",
+            "report_count": 4,
+            "total_amount": 2494.0,
+            "currency": "USD"
+          }
+        ]
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:46:28.206843"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "test_case": "036",
+  "user_query": "Show me reports with expenses from my corporate card",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "All reports with corporate card expenses",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "parameters": {
+        "user": "ALL",
+        "limit": 100
+      },
+      "passed": true,
+      "response": {
+        "corporate_card_count": 0,
+        "total_reports_checked": 46,
+        "reports": [],
+        "payment_type_summary": {}
+      },
+      "error": null
+    },
+    {
+      "test_name": "My corporate card reports only",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "parameters": {
+        "user": "me",
+        "limit": 50
+      },
+      "passed": true,
+      "response": {
+        "my_corporate_card_count": 0,
+        "my_total_reports_checked": 0,
+        "reports": []
+      },
+      "error": null
+    },
+    {
+      "test_name": "Get available payment types",
+      "endpoint": "/api/v3.0/expense/paymenttypes",
+      "method": "GET",
+      "parameters": {},
+      "passed": true,
+      "response": {
+        "payment_types_count": 3,
+        "payment_types": [
+          {
+            "code": "CASH",
+            "name": "Cash",
+            "id": "CASH",
+            "is_default": false
+          },
+          {
+            "code": "COPD",
+            "name": "Company Paid",
+            "id": "COPD",
+            "is_default": false
+          },
+          {
+            "code": "PCCD",
+            "name": "Pending Card Transaction",
+            "id": "PCCD",
+            "is_default": false
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Corporate card reports grouped by approval status",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "parameters": {
+        "user": "ALL",
+        "limit": 100
+      },
+      "passed": true,
+      "response": {
+        "status_summary": {},
+        "total_corporate_card_reports": 0
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:49:48.066605"
+  }
+}

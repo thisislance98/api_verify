@@ -1,0 +1,175 @@
+{
+  "test_case": "032",
+  "user_query": "Show me the full details of a specific expense report",
+  "api_endpoint": "GET /api/expense/expensereport/v2.0/report/{reportId}",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Get full report details using V2.0 API",
+      "endpoint": "/api/expense/expensereport/v2.0/report/A1FCFC7C71D84705A3F7",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "report_id": "A1FCFC7C71D84705A3F7",
+        "summary": {
+          "report_id": "A1FCFC7C71D84705A3F7",
+          "report_name": "Test",
+          "report_total": 2323.0,
+          "currency_code": "USD",
+          "approval_status_name": "Submitted & Pending Approval",
+          "payment_status_name": "Not Paid",
+          "owner_name": "p10005178e93, James",
+          "owner_login_id": "user11@p10005178e93.com",
+          "create_date": "2023-02-14T00:00:00",
+          "submit_date": "2023-02-14T17:04:07",
+          "approved_date": "",
+          "expense_entries_count": 1,
+          "has_exception": "N",
+          "business_purpose": "",
+          "country": "US",
+          "policy_id": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+          "custom_fields": []
+        }
+      },
+      "error": "Unknown format code 'f' for object of type 'str'"
+    },
+    {
+      "test_name": "Verify V2.0 API response structure",
+      "passed": true,
+      "validations": [
+        {
+          "field": "ReportName",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "ReportID",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "ReportTotal",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "CurrencyCode",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "ApprovalStatusName",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "PaymentStatusName",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "EmployeeName",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "UserLoginID",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "ReportDate",
+          "present": true,
+          "category": "header"
+        },
+        {
+          "field": "ReportPurpose",
+          "present": false,
+          "category": "header"
+        },
+        {
+          "field": "ExpenseEntriesList",
+          "present": true,
+          "category": "entries"
+        },
+        {
+          "field": "entry.ExpenseTypeName",
+          "present": true,
+          "category": "entry"
+        },
+        {
+          "field": "entry.TransactionAmount",
+          "present": true,
+          "category": "entry"
+        },
+        {
+          "field": "entry.TransactionCurrencyCode",
+          "present": true,
+          "category": "entry"
+        },
+        {
+          "field": "entry.PostedAmount",
+          "present": true,
+          "category": "entry"
+        },
+        {
+          "field": "entry.TransactionDate",
+          "present": true,
+          "category": "entry"
+        },
+        {
+          "field": "entry.VendorDescription",
+          "present": true,
+          "category": "entry"
+        },
+        {
+          "field": "WorkflowActionURL",
+          "present": true,
+          "category": "workflow"
+        },
+        {
+          "field": "ApproverLoginID",
+          "present": false,
+          "category": "workflow"
+        },
+        {
+          "field": "ApproverName",
+          "present": false,
+          "category": "workflow"
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Error handling for invalid report ID",
+      "passed": true,
+      "response": {
+        "handled_gracefully": true,
+        "error_message": "Bad request: { \"Error\": { \"Message\":\"Invalid report\", \"Server-Time\":\"2025-11-06T16:47:08\", \"Id\":\"ED9B49C6-F84D-4A1B-9B37-D36CE10574A6\" } }",
+        "report_id": "INVALID_REPORT_ID_12345"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Compare V2.0 vs V3.0 API responses",
+      "passed": true,
+      "comparison": {
+        "v2_fields_count": 59,
+        "v3_fields_count": 30,
+        "v2_has_entries": true,
+        "v2_entries_count": 1,
+        "report_name_match": true,
+        "total_match": true
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:47:12.088461",
+    "test_report_id": "A1FCFC7C71D84705A3F7"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "test_case": "002",
+  "user_query": "Can I see all expense reports I need to approve this week?",
+  "api_endpoint": "GET /expensereports/v4/users/{userId}/context/MANAGER/reportsToApprove",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval without filters",
+      "endpoint": "/expensereports/v4/users/bead74e5-3b5e-438e-8be9-94a57e54296f/context/MANAGER/reportsToApprove",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "total_elements": 0,
+        "total_pages": 1
+      },
+      "error": null
+    },
+    {
+      "test_name": "Retrieval with approvalStatus filter",
+      "endpoint": "/expensereports/v4/users/bead74e5-3b5e-438e-8be9-94a57e54296f/context/MANAGER/reportsToApprove?approvalStatus=SUBMITTED",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "filter_applied": "SUBMITTED"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports (array)",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:37:31.984736"
+  }
+}

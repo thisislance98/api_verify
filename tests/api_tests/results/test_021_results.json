@@ -1,0 +1,75 @@
+{
+  "test_case": "021",
+  "user_query": "What reports did I approve yesterday?",
+  "api_endpoint": "GET /api/v3.0/expense/reports with approvedDateAfter and approvedDateBefore filters",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Reports approved yesterday (using LastModifiedDate proxy)",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&modifiedDateAfter=2025-11-05&modifiedDateBefore=2025-11-06",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "params": {
+          "approvalStatusCode": "A_APPR",
+          "modifiedDateAfter": "2025-11-05",
+          "modifiedDateBefore": "2025-11-06",
+          "user": "ALL",
+          "limit": 100
+        }
+      },
+      "error": null,
+      "date_filter": {
+        "yesterday": "2025-11-05",
+        "today": "2025-11-06"
+      }
+    },
+    {
+      "test_name": "Approved reports modified in last 7 days",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_APPR&modifiedDateAfter=2025-10-30",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "params": {
+          "approvalStatusCode": "A_APPR",
+          "modifiedDateAfter": "2025-10-30",
+          "user": "ALL",
+          "limit": 100
+        }
+      },
+      "error": null,
+      "date_filter": {
+        "start": "2025-10-30",
+        "end": "2025-11-06"
+      }
+    },
+    {
+      "test_name": "Approved reports field validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports (array)",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:40.233990"
+  }
+}

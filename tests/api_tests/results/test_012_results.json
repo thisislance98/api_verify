@@ -1,0 +1,128 @@
+{
+  "test_case": "012",
+  "user_query": "Show me expense reports with total amount over $5000",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of reports over $5000",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports_retrieved": 45,
+        "reports_over_threshold": 2,
+        "threshold": 5000.0,
+        "params": {
+          "user": "ALL",
+          "limit": 100
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Verify threshold filtering accuracy",
+      "passed": true,
+      "response": {
+        "all_reports_valid": true,
+        "total_reports_checked": 2,
+        "threshold": 5000.0
+      },
+      "error": null
+    },
+    {
+      "test_name": "High-value reports by approval status",
+      "passed": true,
+      "response": {
+        "total_high_value_reports": 2,
+        "status_distribution": {
+          "Approved": 1,
+          "Not Submitted": 1
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Currency code validation",
+      "passed": true,
+      "response": {
+        "total_reports": 2,
+        "currencies_found": [
+          "MXN",
+          "JPY"
+        ],
+        "currency_distribution": {
+          "MXN": 1,
+          "JPY": 1
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "params",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "reports (array)",
+          "present": true
+        },
+        {
+          "field": "count (integer)",
+          "present": true
+        },
+        {
+          "field": "report.ID",
+          "present": true
+        },
+        {
+          "field": "report.ReportName",
+          "present": true
+        },
+        {
+          "field": "report.Total",
+          "present": true
+        },
+        {
+          "field": "report.CurrencyCode",
+          "present": true
+        },
+        {
+          "field": "report.ApprovalStatusName",
+          "present": true
+        },
+        {
+          "field": "report.OwnerName",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:17.541300"
+  }
+}

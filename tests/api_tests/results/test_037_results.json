@@ -1,0 +1,63 @@
+{
+  "test_case": "037",
+  "user_query": "What reports have been audited by finance?",
+  "api_endpoint": "GET /api/v3.0/expense/reports (filter by audit status)",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of audited reports",
+      "endpoint": "/api/v3.0/expense/reports (filter by audit status)",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "total_retrieved": 45,
+        "message": "Retrieved 0 audited reports out of 45 total reports",
+        "reports": []
+      },
+      "error": null
+    },
+    {
+      "test_name": "Check available audit fields",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports_checked": 0,
+        "audit_related_fields": [],
+        "sample_values": {}
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analyze audit status distribution",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_audited_reports": 0,
+        "audit_indicator_distribution": {},
+        "approval_status_distribution": {},
+        "payment_status_distribution": {}
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analyze audit timeline",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "message": "No audited reports found"
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:48:01.676677"
+  }
+}

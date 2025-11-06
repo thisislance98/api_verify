@@ -1,0 +1,61 @@
+{
+  "test_case": "041",
+  "user_query": "What's the status of reports I submitted on behalf of my manager?",
+  "api_endpoint": "GET /api/v3.0/expense/reports?user={managerID}&submitterLoginID=me",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of reports submitted by delegate on behalf of manager",
+      "endpoint": "/api/v3.0/expense/reports?submitterLoginID=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 45,
+        "delegate_submitted_count": 0,
+        "delegate_login_id": "user11@p10005178e93.com",
+        "reports": []
+      },
+      "error": null
+    },
+    {
+      "test_name": "Group delegate-submitted reports by owner",
+      "endpoint": "/api/v3.0/expense/reports?submitterLoginID=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "delegate_submitted_count": 0,
+        "unique_owners": 0,
+        "by_owner": {}
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analyze status breakdown of delegate-submitted reports",
+      "endpoint": "/api/v3.0/expense/reports?submitterLoginID=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_delegate_submitted": 0,
+        "status_breakdown": {}
+      },
+      "error": null
+    },
+    {
+      "test_name": "Filter reports for a specific manager",
+      "endpoint": "/api/v3.0/expense/reports?user={managerID}&submitterLoginID=me",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "message": "No delegate-submitted reports found to filter by manager"
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:47:18.349744"
+  }
+}

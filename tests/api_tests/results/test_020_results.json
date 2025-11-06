@@ -1,0 +1,62 @@
+{
+  "test_case": "020",
+  "user_query": "Show me expense reports with missing manager approval",
+  "api_endpoint": "GET /api/v3.0/expense/reports?approvalStatusCode=A_PEND&approverName=null",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of reports with missing manager approval",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND&approverName=null",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "approval_status_code": "A_PEND",
+        "reports": []
+      },
+      "error": null
+    },
+    {
+      "test_name": "Verify approval status codes and missing approver fields",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "all_pending_status": true,
+        "all_missing_approver": true,
+        "status_verification": "PASS"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analyze time reports have been pending without approver",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "message": "No reports found"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Compare with all pending reports",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_PEND",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "reports_missing_approver": 0,
+        "total_pending_reports": 4,
+        "percentage_missing_approver": 0.0
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:38.595366"
+  }
+}

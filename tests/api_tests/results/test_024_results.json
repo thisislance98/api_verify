@@ -1,0 +1,141 @@
+{
+  "test_case": "024",
+  "user_query": "Show me reports with foreign currency expenses",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "All reports with foreign currency",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "parameters": {
+        "user": "ALL",
+        "limit": 100
+      },
+      "passed": true,
+      "response": {
+        "foreign_currency_count": 0,
+        "reports": []
+      },
+      "error": null
+    },
+    {
+      "test_name": "Reports with specific currencies (EUR, GBP, JPY)",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "parameters": {
+        "user": "ALL",
+        "limit": 100
+      },
+      "passed": true,
+      "response": {
+        "target_currencies": [
+          "EUR",
+          "GBP",
+          "JPY",
+          "CAD",
+          "AUD",
+          "CNY"
+        ],
+        "currency_breakdown": {
+          "EUR": 2,
+          "GBP": 0,
+          "JPY": 7,
+          "CAD": 0,
+          "AUD": 0,
+          "CNY": 0
+        },
+        "total_found": 9
+      },
+      "error": null
+    },
+    {
+      "test_name": "Foreign currency by country",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "parameters": {
+        "user": "ALL",
+        "limit": 100
+      },
+      "passed": true,
+      "response": {
+        "country_currency_map": {
+          "JP": {
+            "JPY": 7
+          },
+          "MX": {
+            "MXN": 4
+          },
+          "FR": {
+            "EUR": 2
+          }
+        },
+        "countries_with_foreign_currency": 3
+      },
+      "error": null
+    },
+    {
+      "test_name": "Currency conversion verification",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "parameters": {
+        "user": "ALL",
+        "limit": 50
+      },
+      "passed": true,
+      "response": {
+        "foreign_currency_reports": 13,
+        "sample_reports": [
+          {
+            "report_id": "A1959CB38B0641EBB0C5",
+            "name": "test",
+            "currency": "JPY",
+            "total": 0.0,
+            "country": "JP",
+            "has_conversion_info": false
+          },
+          {
+            "report_id": "E24262EB0D8E4F17915C",
+            "name": "Empty Report",
+            "currency": "MXN",
+            "total": 0.0,
+            "country": "MX",
+            "has_conversion_info": false
+          },
+          {
+            "report_id": "E74EF46964FC441DB857",
+            "name": "XPR-6312000",
+            "currency": "MXN",
+            "total": 100.0,
+            "country": "MX",
+            "has_conversion_info": false
+          },
+          {
+            "report_id": "FEFE61B9276643E2A9C7",
+            "name": "Test FIS JSON A mexico cfdi",
+            "currency": "MXN",
+            "total": 6652.8,
+            "country": "MX",
+            "has_conversion_info": false
+          },
+          {
+            "report_id": "3653544A0D3A41169978",
+            "name": "min_test",
+            "currency": "EUR",
+            "total": 30.07,
+            "country": "FR",
+            "has_conversion_info": false
+          }
+        ]
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:47.283362"
+  }
+}

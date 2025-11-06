@@ -1,0 +1,126 @@
+{
+  "test_case": "005",
+  "user_query": "What reports are currently being processed for payment?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic payment processing reports retrieval",
+      "endpoint": "/api/v3.0/expense/reports?paymentStatusCode=P_PROC",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 1,
+        "payment_status_code": "P_PROC"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Limited results retrieval (10 reports)",
+      "endpoint": "/api/v3.0/expense/reports?paymentStatusCode=P_PROC&limit=10",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 1,
+        "limit_applied": 10
+      },
+      "error": null
+    },
+    {
+      "test_name": "User filter (ALL users)",
+      "endpoint": "/api/v3.0/expense/reports?paymentStatusCode=P_PROC&user=ALL",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 1,
+        "user_filter": "ALL"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "payment_status_code",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "report.id",
+          "present": true
+        },
+        {
+          "field": "report.name",
+          "present": true
+        },
+        {
+          "field": "report.total",
+          "present": true
+        },
+        {
+          "field": "report.currency_code",
+          "present": true
+        },
+        {
+          "field": "report.payment_status_name",
+          "present": true
+        },
+        {
+          "field": "report.payment_status_code",
+          "present": true
+        },
+        {
+          "field": "report.approval_status",
+          "present": true
+        }
+      ],
+      "error": null
+    },
+    {
+      "test_name": "Payment status data verification",
+      "passed": true,
+      "validations": [
+        {
+          "check": "payment_status_code == P_PROC",
+          "passed": true
+        },
+        {
+          "check": "report has payment_status_code",
+          "passed": true
+        },
+        {
+          "check": "report has payment_status_name",
+          "passed": true
+        },
+        {
+          "check": "report has days_since_approval",
+          "passed": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:37:45.904774"
+  }
+}

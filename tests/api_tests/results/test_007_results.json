@@ -1,0 +1,74 @@
+{
+  "test_case": "007",
+  "user_query": "Which of my reports are stuck in exception review?",
+  "api_endpoint": "GET /api/v3.0/expense/reports?approvalStatusCode=A_AAFH",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval with A_AAFH filter",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_AAFH",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "approval_status": "A_AAFH",
+        "message": "Retrieved 0 reports in exception review"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Retrieval with user='ALL' filter",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_AAFH&user=ALL",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "approval_status": "A_AAFH",
+        "user_filter": "ALL"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Retrieval with limit parameter",
+      "endpoint": "/api/v3.0/expense/reports?approvalStatusCode=A_AAFH&limit=10",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "count": 0,
+        "limit_applied": 10,
+        "limit_respected": true
+      },
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports (array)",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "approval_status (A_AAFH)",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:09.533244"
+  }
+}

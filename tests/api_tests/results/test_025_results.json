@@ -1,0 +1,96 @@
+{
+  "test_case": "025",
+  "user_query": "What's my reimbursement history for the past year?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Retrieve paid reports from the past year",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "report_count": 0,
+        "note": "No paid reports found in the past year - expected in sandbox",
+        "date_range": {
+          "from": "2024-11-06",
+          "to": "2025-11-06"
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Retrieve paid reports by quarter",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "quarterly_data": [
+          {
+            "quarter": 4,
+            "start_date": "2025-08-08",
+            "end_date": "2025-11-06",
+            "report_count": 0,
+            "total_amount": 0
+          },
+          {
+            "quarter": 3,
+            "start_date": "2025-05-10",
+            "end_date": "2025-08-08",
+            "report_count": 0,
+            "total_amount": 0
+          },
+          {
+            "quarter": 2,
+            "start_date": "2025-02-09",
+            "end_date": "2025-05-10",
+            "report_count": 0,
+            "total_amount": 0
+          },
+          {
+            "quarter": 1,
+            "start_date": "2024-11-11",
+            "end_date": "2025-02-09",
+            "report_count": 0,
+            "total_amount": 0
+          }
+        ],
+        "total_reports": 0,
+        "total_amount": 0
+      },
+      "error": null
+    },
+    {
+      "test_name": "Year-over-year comparison",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "current_year": {
+          "period": "2024-11-06 to today",
+          "reports": 0,
+          "total": 0
+        },
+        "previous_year": {
+          "period": "2023-11-07 to 2024-11-06",
+          "reports": 0,
+          "total": 0
+        },
+        "changes": {
+          "report_count": 0,
+          "report_count_pct": 0,
+          "amount": 0,
+          "amount_pct": 0
+        }
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:51.410843"
+  }
+}

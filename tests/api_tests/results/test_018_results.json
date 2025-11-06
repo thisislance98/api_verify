@@ -1,0 +1,204 @@
+{
+  "test_case": "018",
+  "user_query": "Can I see all reports that triggered policy exceptions?",
+  "api_endpoint": "GET /api/v3.0/expense/reports?hasException=Y",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of reports with hasException=Y",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports": 45,
+        "params": {
+          "hasException": "Y",
+          "user": "ALL",
+          "limit": 100
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Analyze exception flag distribution",
+      "passed": true,
+      "response": {
+        "total_returned": 45,
+        "with_exceptions": 18,
+        "without_exceptions": 27,
+        "has_actual_data": true
+      },
+      "error": null
+    },
+    {
+      "test_name": "Exception reports by approval status",
+      "passed": true,
+      "response": {
+        "total_exception_reports": 45,
+        "status_distribution": {
+          "Submitted & Pending Approval": 4,
+          "Not Submitted": 37,
+          "Approved & In Accounting Review": 2,
+          "Sent Back to Employee": 1,
+          "Approved": 1
+        }
+      },
+      "error": null
+    },
+    {
+      "test_name": "Compare exception vs non-exception reports",
+      "passed": true,
+      "response": {
+        "with_exceptions": 45,
+        "without_exceptions": 45,
+        "total": 90,
+        "exception_rate": "50.0%"
+      },
+      "error": null
+    },
+    {
+      "test_name": "Inspect exception report details",
+      "passed": true,
+      "response": {
+        "total_reports": 10,
+        "inspected_fields": [
+          {
+            "field": "ID",
+            "value": "A1FCFC7C71D84705A3F7",
+            "present": true
+          },
+          {
+            "field": "ReportName",
+            "value": "Test",
+            "present": true
+          },
+          {
+            "field": "OwnerName",
+            "value": "James p10005178e93",
+            "present": true
+          },
+          {
+            "field": "Total",
+            "value": "2323.0",
+            "present": true
+          },
+          {
+            "field": "CurrencyCode",
+            "value": "USD",
+            "present": true
+          },
+          {
+            "field": "ApprovalStatusName",
+            "value": "Submitted & Pending Approval",
+            "present": true
+          },
+          {
+            "field": "ApprovalStatusCode",
+            "value": "A_PEND",
+            "present": true
+          },
+          {
+            "field": "HasException",
+            "value": "False",
+            "present": true
+          },
+          {
+            "field": "PolicyID",
+            "value": "f3Cu-bqeknkLRowN06b9iCiD4520rI9Ll",
+            "present": true
+          },
+          {
+            "field": "PolicyName",
+            "value": "None",
+            "present": true
+          },
+          {
+            "field": "SubmitDate",
+            "value": "2023-02-14T17:04:07.133",
+            "present": true
+          },
+          {
+            "field": "ApprovedDate",
+            "value": "None",
+            "present": true
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "params",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "reports (array)",
+          "present": true
+        },
+        {
+          "field": "count (integer)",
+          "present": true
+        },
+        {
+          "field": "hasException param applied",
+          "present": true
+        },
+        {
+          "field": "report.ID",
+          "present": true
+        },
+        {
+          "field": "report.ReportName",
+          "present": true
+        },
+        {
+          "field": "report.Total",
+          "present": true
+        },
+        {
+          "field": "report.CurrencyCode",
+          "present": true
+        },
+        {
+          "field": "report.ApprovalStatusName",
+          "present": true
+        },
+        {
+          "field": "report.OwnerName",
+          "present": true
+        },
+        {
+          "field": "report.HasException",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:38:33.803138"
+  }
+}

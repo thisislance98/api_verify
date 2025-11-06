@@ -1,0 +1,130 @@
+{
+  "test_case": "031",
+  "user_query": "Which reports have comments from approvers?",
+  "api_endpoint": "GET /expensereports/v4/reports/{reportId}",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Find reports with approver comments",
+      "endpoint": "/expensereports/v4/reports/{reportId}",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "total_reports_checked": 46,
+        "reports_with_comments": 0,
+        "reports": []
+      },
+      "error": null
+    },
+    {
+      "test_name": "Examine workflow structure of a report",
+      "passed": true,
+      "response": {
+        "report_id": "A1FCFC7C71D84705A3F7",
+        "report_name": "Test",
+        "available_fields": [
+          "approvalStatus",
+          "approvalStatusId",
+          "concurAuditStatus",
+          "customData",
+          "ledger",
+          "ledgerId",
+          "paymentStatus",
+          "paymentStatusId",
+          "submitDate",
+          "approvedAmount",
+          "claimedAmount",
+          "amountCompanyPaid",
+          "paymentConfirmedAmount",
+          "amountDueCompany",
+          "amountDueCompanyCard",
+          "amountDueEmployee",
+          "totalAmountPaidEmployee",
+          "personalAmount",
+          "reportTotal",
+          "amountNotApproved",
+          "isFinancialIntegrationEnabled",
+          "canReopen",
+          "isReopened",
+          "isFundsAndGrantsIntegrationEligible",
+          "isReceiptImageAvailable",
+          "isReceiptImageRequired",
+          "isPaperReceiptsReceived",
+          "reportId",
+          "currency",
+          "currencyCode",
+          "analyticsGroupId",
+          "hierarchyNodeId",
+          "allocationFormId",
+          "links",
+          "reportDate",
+          "reportFormId",
+          "businessPurpose",
+          "countryCode",
+          "countrySubDivisionCode",
+          "policyId",
+          "startDate",
+          "endDate",
+          "name",
+          "policy",
+          "country",
+          "hasReceivedCashAdvanceReturns",
+          "receiptContainerId",
+          "userId",
+          "reportType",
+          "redirectFund",
+          "creationDate",
+          "canRecall",
+          "reportVersion",
+          "reportNumber",
+          "cardProgramStatementPeriodId",
+          "canAddExpense",
+          "isSubmitted",
+          "isSentBack",
+          "sponsorId",
+          "submitterId",
+          "taxConfigId",
+          "defaultFieldAccess",
+          "employee",
+          "receiptStatus",
+          "imageStatus",
+          "isPendingDelegatorReview",
+          "isPaperReceiptRequired",
+          "isReportEverSentBack",
+          "hasBlockingExceptions"
+        ],
+        "workflow_fields": [
+          "approvalStatus",
+          "approvalStatusId",
+          "approvedAmount",
+          "amountNotApproved"
+        ]
+      },
+      "error": null
+    },
+    {
+      "test_name": "Check V2 API for workflow information",
+      "endpoint": "/api/expense/expensereport/v2.0/report/{reportId}",
+      "method": "GET",
+      "passed": true,
+      "response": {
+        "report_id": "A1FCFC7C71D84705A3F7",
+        "report_name": "Test",
+        "workflow_fields": [
+          "ApprovalStatusCode",
+          "ApprovalStatusName",
+          "WorkflowActionURL"
+        ],
+        "has_workflow_url": true
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0,
+    "success_rate": "100.0%",
+    "timestamp": "2025-11-06T13:50:43.770038"
+  }
+}

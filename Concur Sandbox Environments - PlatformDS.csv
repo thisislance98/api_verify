@@ -1,0 +1,8 @@
+﻿CONCUR INSTANCE,ENVIRONMENT,EDITION,DATA CENTER,STATUS,LOGIN URL,LOGINS,PASSWORD,MFA EMAIL,COMPANY UUID,ENTITY CODE
+Concur Connect-601 Platform DataScience Engineering (Pro),Production,Professional,US2,Active,https://us2.concursolutions.com,,,,562612da-ba07-4ed0-9ef2-679050ccfe82,p1209871n43g
+,,,,,,wsadmin@platformds-connect.com,PlatformDS1,,,
+,,,,,,test1@platformds-connect.com,PlatformDS1,,,
+,,,,,,test2@platformds-connect.com,PlatformDS1,,,
+,,,,,,approver@platformds-connect.com,PlatformDS1,,,
+,,,,,,processor@platformds-connect.com,PlatformDS1,,,
+,,,,,,,,,,

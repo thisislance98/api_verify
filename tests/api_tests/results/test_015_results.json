@@ -1,0 +1,113 @@
+{
+  "test_case": "015",
+  "user_query": "Which reports were paid via ACH last month?",
+  "api_endpoint": "GET /api/v3.0/expense/reports",
+  "service": "Expense Reports & Status",
+  "tests": [
+    {
+      "test_name": "Basic ACH-paid reports retrieval",
+      "endpoint": "/api/v3.0/expense/reports",
+      "method": "GET",
+      "params": "paymentStatusCode=P_PAID&paidDateAfter={lastMonth}&paymentType=ACH",
+      "passed": false,
+      "response": {
+        "ach_report_count": 0,
+        "total_paid_reports": 0,
+        "payment_status_code": "P_PAID",
+        "payment_type_filter": "ACH",
+        "date_filter": "Paid after 2025-10-07",
+        "non_ach_payment_types": []
+      },
+      "error": "No ACH-paid reports found in available data"
+    },
+    {
+      "test_name": "Payment status verification",
+      "passed": true,
+      "validations": [],
+      "error": null,
+      "response": {
+        "all_reports_valid": true,
+        "total_reports_checked": 0
+      }
+    },
+    {
+      "test_name": "ACH payment type verification",
+      "passed": true,
+      "validations": [],
+      "error": null,
+      "response": {
+        "all_reports_valid": true,
+        "total_reports_checked": 0
+      }
+    },
+    {
+      "test_name": "Date filter verification",
+      "passed": true,
+      "validations": [],
+      "error": null,
+      "response": {
+        "all_reports_valid": true,
+        "total_reports_checked": 0,
+        "cutoff_date": "2025-10-07"
+      }
+    },
+    {
+      "test_name": "Response structure validation",
+      "passed": true,
+      "validations": [
+        {
+          "field": "success",
+          "present": true
+        },
+        {
+          "field": "reports",
+          "present": true
+        },
+        {
+          "field": "all_paid_reports",
+          "present": true
+        },
+        {
+          "field": "count",
+          "present": true
+        },
+        {
+          "field": "total_paid_reports",
+          "present": true
+        },
+        {
+          "field": "payment_status_code",
+          "present": true
+        },
+        {
+          "field": "payment_type_filter",
+          "present": true
+        },
+        {
+          "field": "date_filter",
+          "present": true
+        },
+        {
+          "field": "message",
+          "present": true
+        },
+        {
+          "field": "count (integer)",
+          "present": true
+        },
+        {
+          "field": "reports (array)",
+          "present": true
+        }
+      ],
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 4,
+    "failed": 1,
+    "success_rate": "80.0%",
+    "timestamp": "2025-11-06T13:39:08.587186"
+  }
+}

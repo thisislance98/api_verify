@@ -1,0 +1,178 @@
+{
+  "environments": {
+    "integration": {
+      "name": "Integration Environment",
+      "entity_code": "p10005178e93",
+      "company_uuid": "fb7c8157-16d6-4dfd-b970-8c2a39d81790",
+      "user_uuid": "a9abaa60-38a0-46be-9736-bc9c1e317e41",
+      "cte_url": "https://integration.concursolutions.com",
+      "api_base_url": "https://integration.api.concursolutions.com",
+      "token_url": "https://integration.api.concursolutions.com/oauth2/v0/token",
+      "client_id": "486c51f1-1d22-41cf-b743-ca90fd4279d4",
+      "client_secret": "3b615a2e-d467-40be-83c7-3e6286625813",
+      "accounts": {
+        "expense_user": {
+          "username": "user11@p10005178e93.com",
+          "password": "password12",
+          "role": "Expense User",
+          "note": "Delegate each other"
+        },
+        "delegate_user": {
+          "username": "test.invoice@p10005178e93.com",
+          "password": "n=N(eihl^xUW{Al",
+          "role": "Delegate User",
+          "user_uuid": "8e1a92b9-4aaa-4a2f-9deb-71bc4d11dbd8",
+          "note": "Delegate each other"
+        },
+        "manager_approver": {
+          "username": "mgr3@p10005178e93.com",
+          "password": "password12",
+          "role": "Manager/Approver",
+          "note": "Manager/Approver for user11"
+        },
+        "administrator": {
+          "username": "concur_admin@p10005178e93.com",
+          "password": "SAPConcur@135",
+          "role": "Administrator",
+          "note": "Used to generate company JWT"
+        },
+        "us_manual_test": {
+          "username": "usauser@p10005178e93.com",
+          "password": "c-luY-7S5fmLpdd",
+          "role": "Manual Test User",
+          "user_id": "38ead366-0327-4905-922f-2df03d95c279",
+          "company_id": "fb7c8157-16d6-4dfd-b970-8c2a39d81790",
+          "note": "Owned and Only used by Receipt Team for manual test"
+        }
+      }
+    },
+    "us2": {
+      "name": "US2 Data Center",
+      "entity_code": "p1200118q3an",
+      "company_uuid": "8e035e87-a1f3-493e-b578-6df7348c72e7",
+      "user_uuid": "c49cb7b0-8fe7-4693-810e-801a79a4b4fc",
+      "cte_url": "https://us2.concursolutions.com",
+      "api_base_url": "https://us2.api.concursolutions.com",
+      "token_url": "https://us2.api.concursolutions.com/oauth2/v0/token",
+      "client_id": "486c51f1-1d22-41cf-b743-ca90fd4279d4",
+      "client_secret": "3b615a2e-d467-40be-83c7-3e6286625813",
+      "auth_token_service_client_id": "5a03de57-4d6d-46bd-9ddc-db3e12c10856",
+      "accounts": {
+        "automation_user": {
+          "username": "rr_automation_user1@spende2e_us2.com",
+          "password": "testReceipt521",
+          "role": "Automation User",
+          "note": "Used for Synthetic tests"
+        },
+        "usa_user": {
+          "username": "usauser@p1200118q3an.com",
+          "password": "testReceipt521",
+          "role": "Expense User",
+          "note": "Delegate mexicouser"
+        },
+        "mexico_user": {
+          "username": "mexicouser@p1200118q3an.com",
+          "password": "testReceipt521",
+          "role": "Expense User",
+          "note": "Delegate usauser"
+        },
+        "delegate_user": {
+          "username": "auto1@spende2e_us2.com",
+          "password": "testReceipt521",
+          "role": "Delegate User"
+        }
+      }
+    },
+    "eu2": {
+      "name": "EU2 Data Center",
+      "entity_code": "p1300127miuv",
+      "company_uuid": "7e1cf668-aa77-4fba-a076-ca05b3c7b992",
+      "user_uuid": "ae3e23f1-ddbc-4194-b3c2-1290620c7f3f",
+      "cte_url": "https://eu2.concursolutions.com",
+      "api_base_url": "https://eu2.api.concursolutions.com",
+      "token_url": "https://eu2.api.concursolutions.com/oauth2/v0/token",
+      "client_id": "486c51f1-1d22-41cf-b743-ca90fd4279d4",
+      "client_secret": "3b615a2e-d467-40be-83c7-3e6286625813",
+      "auth_token_service_client_id": "2110351c-b2d3-4584-929b-e2a3b4bbd508",
+      "accounts": {
+        "expense_user": {
+          "username": "test@ReceiptRecognitionEU2.com",
+          "password": "testReceipt521",
+          "role": "Expense User",
+          "email": "sa_recpt_recg_eu2@concur.com",
+          "note": "Used for Synthetic test and rr-automation"
+        },
+        "usa_user": {
+          "username": "usauser@p1300127miuv.com",
+          "password": "testReceipt521",
+          "role": "Expense User",
+          "note": "Delegate mexicouser"
+        },
+        "mexico_user": {
+          "username": "mexicouser@p1300127miuv.com",
+          "password": "testReceipt521",
+          "role": "Expense User",
+          "note": "Delegate usauser"
+        }
+      }
+    },
+    "apj1": {
+      "name": "APJ1 Data Center",
+      "entity_code": "p1400067hbqy",
+      "company_uuid": "2233c8f8-9c26-4292-90af-768ccdf2e336",
+      "cte_url": "https://apj1.concursolutions.com",
+      "api_base_url": "https://apj1.api.concursolutions.com",
+      "token_url": "https://apj1.api.concursolutions.com/oauth2/v0/token",
+      "client_id": "486c51f1-1d22-41cf-b743-ca90fd4279d4",
+      "client_secret": "3b615a2e-d467-40be-83c7-3e6286625813",
+      "accounts": {
+        "ebunsho_user": {
+          "username": "Receipt_User_JP@p1400067hbqy.co.jp",
+          "password": "Concur8888",
+          "role": "eBunsho User",
+          "user_id": "e5cf7e9a-5c35-4e11-819d-530ab01a52a7"
+        },
+        "fr_user": {
+          "username": "Receipt_User_FR@p1400067hbqy.co.jp",
+          "password": "Concur9999",
+          "role": "FR User",
+          "user_id": "3bafe482-aac3-4313-9743-b338344b3bce"
+        },
+        "us_user": {
+          "username": "Receipt_User_US_2@p1400067hbqy.co.jp",
+          "password": "Concur8888",
+          "role": "US User",
+          "user_id": "515644db-1927-4e6f-8e47-363c7280ef13"
+        }
+      }
+    },
+    "uspscc": {
+      "name": "USPSCC Government Cloud",
+      "entity_code": "p0900326ibw8",
+      "cte_url": "https://usg.concursolutions.com",
+      "api_base_url": "https://usg.api.concursolutions.com",
+      "token_url": "https://usg.api.concursolutions.com/oauth2/v0/token",
+      "client_id": "486c51f1-1d22-41cf-b743-ca90fd4279d4",
+      "client_secret": "3b615a2e-d467-40be-83c7-3e6286625813",
+      "accounts": {
+        "expense_user_y": {
+          "username": "expensey@uspsccreceipt.com",
+          "password": "Passw0rd!",
+          "role": "Expense User",
+          "user_id": "7e32edb4-2d53-4464-92c4-a9a53cd25da6",
+          "company_id": "e7acdd65-2e00-4f92-9f89-ae28d0ea529c"
+        },
+        "expense_user_z": {
+          "username": "expensez@uspsccreceipt.com",
+          "password": "Passw0rd!",
+          "role": "Expense User",
+          "user_id": "132c1928-e611-4580-99e2-fa0a09a82d9c",
+          "company_id": "e7acdd65-2e00-4f92-9f89-ae28d0ea529c"
+        }
+      }
+    }
+  },
+  "default_environment": "integration",
+  "default_account_role": "manager_approver"
+}
+

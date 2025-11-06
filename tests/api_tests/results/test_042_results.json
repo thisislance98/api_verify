@@ -1,0 +1,51 @@
+{
+  "test_case": "042",
+  "user_query": "What are the line items on this expense report?",
+  "api_endpoint": "GET /expensereports/v4/reports/{reportId}/expenses",
+  "service": "Expense Entries & Details",
+  "tests": [
+    {
+      "test_name": "Basic retrieval of expense line items",
+      "endpoint": "/expensereports/v4/reports/A1FCFC7C71D84705A3F7/expenses",
+      "method": "GET",
+      "passed": false,
+      "response": null,
+      "error": "API error 403: { \"Error\": { \"Message\":\"Forbidden Request\", \"Server-Time\":\"2025-11-06T16:48:05\", \"Id\":\"5E6C7EC6-B5E0-49B1-ADB9-39F648CFAED0\" } }"
+    },
+    {
+      "test_name": "Expense entry data validation",
+      "passed": false,
+      "validations": [],
+      "error": "API error 403: { \"Error\": { \"Message\":\"Forbidden Request\", \"Server-Time\":\"2025-11-06T16:48:05\", \"Id\":\"610F1C0C-D114-4CA4-8660-1F414FE131D4\" } }"
+    },
+    {
+      "test_name": "Expense type breakdown",
+      "passed": false,
+      "response": null,
+      "error": "API error 403: { \"Error\": { \"Message\":\"Forbidden Request\", \"Server-Time\":\"2025-11-06T16:48:06\", \"Id\":\"E4F5E729-F947-45B3-A4BE-5526711D7F5B\" } }"
+    },
+    {
+      "test_name": "Receipt compliance analysis",
+      "passed": false,
+      "response": null,
+      "error": "API error 403: { \"Error\": { \"Message\":\"Forbidden Request\", \"Server-Time\":\"2025-11-06T16:48:06\", \"Id\":\"4D09DBD0-D3AC-45BC-B140-A0684D9F53C4\" } }"
+    },
+    {
+      "test_name": "Multi-report line item comparison",
+      "passed": false,
+      "response": {
+        "reports_analyzed": 0,
+        "total_expenses_across_reports": 0,
+        "report_summaries": []
+      },
+      "error": null
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "passed": 0,
+    "failed": 5,
+    "success_rate": "0.0%",
+    "timestamp": "2025-11-06T13:48:08.510577"
+  }
+}
